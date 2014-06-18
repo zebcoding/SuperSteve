@@ -20,7 +20,7 @@ public class SuperSteve {
   public static SuperSteve instance;
 
   @SidedProxy(serverSide ="uk.zebcoding.supersteve.common.SSCommonProxy", clientSide = "uk.zebcoding.supersteve.client.SSClientProxy")
-  public SSCommonProxy proxy;
+  public static SSCommonProxy proxy;
 
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
