@@ -13,26 +13,27 @@ import uk.zebcoding.supersteve.lib.Names;
  * Created by Charlotte on 18/06/2014.
  */
 public class ItemCape extends ItemSS {
+  private boolean onLastUpdate = false;
+
   public ItemCape() {
     super(Names.Items.CAPE);
   }
-
-  private boolean onLastUpdate = false;
 
   @Override
   public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
     if (!world.isRemote && entityPlayer.isSneaking()) {
       NBTTagCompound tagCompound = itemStack.stackTagCompound;
 
-      if(tagCompound != null) {
+      if (tagCompound != null) {
         if (!tagCompound.getBoolean(Names.NBT.ACTIVE)) {
           tagCompound.setBoolean(Names.NBT.ACTIVE, true);
-        } else if (world.getBlock((int)entityPlayer.posX, (int)entityPlayer.posY - 1, (int)entityPlayer.posZ) != Blocks.air) {
+        } else if (world.getBlock((int) entityPlayer.posX, (int) entityPlayer.posY - 1, (int) entityPlayer.posZ) != Blocks.air) {
           tagCompound.setBoolean(Names.NBT.ACTIVE, false);
         }
       }
 
       itemStack.stackTagCompound = tagCompound;
+
     }
 
     return itemStack;
@@ -45,13 +46,13 @@ public class ItemCape extends ItemSS {
     if (tagCompound == null) {
       itemStack = initNBT(itemStack);
     } else {
-      if(entity instanceof  EntityPlayer) {
+      if (entity instanceof EntityPlayer) {
         EntityPlayer entityPlayer = (EntityPlayer) entity;
         if (tagCompound.getBoolean(Names.NBT.ACTIVE)) {
           entityPlayer.addPotionEffect(new PotionEffect(1, 10, 2));
           entityPlayer.capabilities.allowFlying = true;
           onLastUpdate = true;
-        } else {
+        } else if (onLastUpdate && !entityPlayer.capabilities.isCreativeMode) {
           entityPlayer.capabilities.allowFlying = false;
         }
       }

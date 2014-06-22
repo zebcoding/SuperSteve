@@ -1,3 +1,6 @@
 item.ss_cape.name=Cape
+item.ss_infusedcloth.name=Infused Cloth
+
+tile.ss_sewingmachine.name=Sewing Machine
 
 itemGroup.supersteve=Super Steve

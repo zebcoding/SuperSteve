@@ -1,8 +1,8 @@
 package uk.zebcoding.supersteve.common.item;
 
 import net.minecraft.item.Item;
-import uk.zebcoding.supersteve.init.SSTab;
 import uk.zebcoding.supersteve.lib.Reference;
+import uk.zebcoding.supersteve.lib.SSTab;
 
 /**
  * Created by Charlotte on 18/06/2014.
