@@ -8,6 +8,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import uk.zebcoding.supersteve.common.SSCommonProxy;
 import uk.zebcoding.supersteve.init.SSBlocks;
+import uk.zebcoding.supersteve.init.SSCrafting;
 import uk.zebcoding.supersteve.init.SSItems;
 import uk.zebcoding.supersteve.lib.Reference;
 
@@ -27,6 +28,8 @@ public class SuperSteve {
     SSBlocks.init();
 
     SSItems.init();
+
+    SSCrafting.init();
   }
 
   @EventHandler

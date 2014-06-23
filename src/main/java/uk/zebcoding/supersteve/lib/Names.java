@@ -29,4 +29,10 @@ public class Names {
     public static final int FLIGHT = 1;
     public static final int SPEED = 2;
   }
+
+
+  public class Colours {
+    public static final int FLIGHT = 0xADD8E6;
+    public static final int SPEED = 0x005800;
+  }
 }

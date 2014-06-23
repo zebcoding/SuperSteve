@@ -9,11 +9,16 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import uk.zebcoding.supersteve.lib.Names;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Charlotte on 18/06/2014.
  */
 public class ItemCape extends ItemSS {
   private boolean onLastUpdate = false;
+  private List<Integer> powers = new ArrayList<Integer>();
+
 
   public ItemCape() {
     super(Names.Items.CAPE);
@@ -21,10 +26,16 @@ public class ItemCape extends ItemSS {
 
   @Override
   public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
-    if (!world.isRemote && entityPlayer.isSneaking()) {
+    if (entityPlayer.isSneaking()) {
       NBTTagCompound tagCompound = itemStack.stackTagCompound;
 
       if (tagCompound != null) {
+        int[] recovered = tagCompound.getIntArray(Names.NBT.POWERS);
+
+        for (int i : recovered) {
+          powers.add(i);
+        }
+
         if (!tagCompound.getBoolean(Names.NBT.ACTIVE)) {
           tagCompound.setBoolean(Names.NBT.ACTIVE, true);
         } else if (world.getBlock((int) entityPlayer.posX, (int) entityPlayer.posY - 1, (int) entityPlayer.posZ) != Blocks.air) {
@@ -49,8 +60,12 @@ public class ItemCape extends ItemSS {
       if (entity instanceof EntityPlayer) {
         EntityPlayer entityPlayer = (EntityPlayer) entity;
         if (tagCompound.getBoolean(Names.NBT.ACTIVE)) {
-          entityPlayer.addPotionEffect(new PotionEffect(1, 10, 2));
-          entityPlayer.capabilities.allowFlying = true;
+          if (powers.contains(Names.Powers.FLIGHT)) {
+            entityPlayer.capabilities.allowFlying = true;
+          }
+          if (powers.contains(Names.Powers.SPEED)) {
+            entityPlayer.addPotionEffect(new PotionEffect(1, 10, 2));
+          }
           onLastUpdate = true;
         } else if (onLastUpdate && !entityPlayer.capabilities.isCreativeMode) {
           entityPlayer.capabilities.allowFlying = false;
@@ -69,6 +84,8 @@ public class ItemCape extends ItemSS {
   private ItemStack initNBT(ItemStack itemStack) {
     NBTTagCompound tagCompound = new NBTTagCompound();
     tagCompound.setBoolean(Names.NBT.ACTIVE, false);
+    int[] powers = { 0 };
+    tagCompound.setIntArray(Names.NBT.POWERS, powers);
 
     itemStack.stackTagCompound = tagCompound;
 
