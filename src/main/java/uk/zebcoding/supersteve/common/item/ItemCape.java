@@ -91,4 +91,27 @@ public class ItemCape extends ItemSS {
 
     return itemStack;
   }
+
+  @Override
+  public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean par4) {
+    list.add("Powers:");
+    if (itemStack.stackTagCompound != null) {
+      int[] powers = itemStack.stackTagCompound.getIntArray(Names.NBT.POWERS);
+      if (powers.length == 1) {
+        list.add(" - None.");
+      } else {
+        for (int i : powers) {
+          switch (i) {
+            case Names.Powers.FLIGHT:
+              list.add(" - Flight.");
+              break;
+            case Names.Powers.SPEED:
+              list.add(" - Speed.");
+          }
+        }
+      }
+    } else {
+      list.add(" - None.");
+    }
+  }
 }
