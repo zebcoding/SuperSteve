@@ -6,11 +6,17 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.potion.Potion;
+import net.minecraftforge.common.MinecraftForge;
 import uk.zebcoding.supersteve.common.SSCommonProxy;
 import uk.zebcoding.supersteve.init.SSBlocks;
 import uk.zebcoding.supersteve.init.SSCrafting;
 import uk.zebcoding.supersteve.init.SSItems;
+import uk.zebcoding.supersteve.init.SSPotions;
 import uk.zebcoding.supersteve.lib.Reference;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 /**
  * Created by Charlotte on 17/06/2014.
@@ -30,6 +36,8 @@ public class SuperSteve {
     SSItems.init();
 
     SSCrafting.init();
+
+    SSPotions.preInit();
   }
 
   @EventHandler
@@ -37,5 +45,7 @@ public class SuperSteve {
     proxy.registerTileEntities();
 
     proxy.registerRenderers();
+
+    SSPotions.init();
   }
 }

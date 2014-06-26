@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import uk.zebcoding.supersteve.init.SSPotions;
 import uk.zebcoding.supersteve.lib.Names;
 
 import java.util.ArrayList;
@@ -66,13 +67,18 @@ public class ItemCape extends ItemSS {
           if (powers.contains(Names.Powers.SPEED)) {
             entityPlayer.addPotionEffect(new PotionEffect(1, 10, 2));
           }
+          if (powers.contains(Names.Powers.STRENGTH)) {
+            entityPlayer.addPotionEffect(new PotionEffect(5, 10, 2));
+          }
+          if (powers.contains(Names.Powers.FROZEN_TOUCH)) {
+            entityPlayer.addPotionEffect(new PotionEffect(SSPotions.frozenTouchPotion.getId(), 10, 2));
+          }
           onLastUpdate = true;
         } else if (onLastUpdate && !entityPlayer.capabilities.isCreativeMode) {
           entityPlayer.capabilities.allowFlying = false;
         }
       }
     }
-
   }
 
   @Override
@@ -107,6 +113,12 @@ public class ItemCape extends ItemSS {
               break;
             case Names.Powers.SPEED:
               list.add(" - Speed.");
+              break;
+            case Names.Powers.STRENGTH:
+              list.add(" - Strength.");
+              break;
+            case Names.Powers.FROZEN_TOUCH:
+              list.add(" - Frozen Touch.");
           }
         }
       }

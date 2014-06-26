@@ -28,11 +28,20 @@ public class Names {
   public class Powers {
     public static final int FLIGHT = 1;
     public static final int SPEED = 2;
+    public static final int STRENGTH = 3;
+    public static final int FROZEN_TOUCH = 4;
   }
 
 
   public class Colours {
-    public static final int FLIGHT = 0xADD8E6;
+    public static final int FLIGHT = 0x000059;
     public static final int SPEED = 0x005800;
+    public static final int STRENGTH = 0x8B1A1A;
+    public static final int FROZEN_TOUCH = 0xADD8E6;
+  }
+
+
+  public class Potions {
+    public static final String FROZEN_TOUCH = "Frozen Touch";
   }
 }

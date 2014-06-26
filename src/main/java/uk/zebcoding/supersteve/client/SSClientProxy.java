@@ -17,6 +17,6 @@ public class SSClientProxy extends SSCommonProxy {
   public void registerRenderers() {
     ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySewingMachine.class, new RenderSewingMachine());
 
-    MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(SSBlocks.SEWING_MACHINE), new RenderSewingMachineItem());
+    MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(SSBlocks.sewingMachine), new RenderSewingMachineItem());
   }
 }

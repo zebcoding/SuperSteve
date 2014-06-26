@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import uk.zebcoding.supersteve.lib.Names;
 
+import javax.lang.model.element.Name;
 import java.util.List;
 
 /**
@@ -18,8 +19,34 @@ public class ItemInfusedCloth extends ItemSS {
   }
 
   @Override
-  public boolean hasEffect(ItemStack itemStack, int pass) {
-    return false;
+  public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+    if (entityPlayer.capabilities.isCreativeMode && entityPlayer.isSneaking()) {
+      NBTTagCompound tagCompound = itemStack.stackTagCompound;
+
+      if (tagCompound != null) {
+        int power = tagCompound.getInteger(Names.NBT.POWERS);
+        switch (power) {
+          case 0:
+            power = 1;
+            break;
+          case 1:
+            power = 2;
+            break;
+          case 2:
+            power = 3;
+            break;
+          case 3:
+            power = 4;
+            break;
+          case 4:
+            power = 0;
+        }
+
+        itemStack.stackTagCompound.setInteger(Names.NBT.POWERS, power);
+      }
+    }
+
+    return itemStack;
   }
 
   @Override
@@ -39,6 +66,10 @@ public class ItemInfusedCloth extends ItemSS {
           return Names.Colours.FLIGHT;
         case Names.Powers.SPEED:
           return Names.Colours.SPEED;
+        case Names.Powers.STRENGTH:
+          return Names.Colours.STRENGTH;
+        case Names.Powers.FROZEN_TOUCH:
+          return Names.Colours.FROZEN_TOUCH;
         default:
           return 0xFFFFFF;
       }
@@ -59,6 +90,12 @@ public class ItemInfusedCloth extends ItemSS {
           break;
         case Names.Powers.SPEED:
           powerName += "Speed.";
+          break;
+        case Names.Powers.STRENGTH:
+          powerName += "Strength.";
+          break;
+        case Names.Powers.FROZEN_TOUCH:
+          powerName += "Frozen Touch.";
           break;
         default:
           powerName += "None.";
