@@ -38,7 +38,7 @@ public class SSCrafting {
 
     // Cloths
     GameRegistry.addRecipe(INFUSED_CLOTH, " W ", "WEW", " W ", 'W', Blocks.wool, 'E', Items.emerald);
-    GameRegistry.addRecipe(clothFlight, " E ", "FCF", " P ", 'E', Items.emerald, 'F', Items.feather, 'C', SSItems.infusedCloth, 'P', Items.ender_pearl);
+      GameRegistry.addRecipe(clothFlight, " E ", "FCF", " P ", 'E', Items.emerald, 'F', Items.feather, 'C', SSItems.infusedCloth, 'P', Items.ender_pearl);
     GameRegistry.addRecipe(clothSpeed, " E ", "RCR", " G ", 'E', Items.emerald, 'R', Items.redstone, 'C', SSItems.infusedCloth, 'G', Items.golden_boots);
     GameRegistry.addRecipe(clothStrength, " E ", "ICI", " D ", 'E', Items.emerald, 'I', Items.iron_sword, 'C', SSItems.infusedCloth, 'D', Items.diamond_sword);
     GameRegistry.addRecipe(clothFrozenTouch, " E ", "ICI", " B ", 'E', Items.emerald, 'I', Blocks.ice, 'C', SSItems.infusedCloth, 'B', Items.water_bucket);
